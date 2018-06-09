@@ -17,37 +17,39 @@ local use_ai_handicap = true;
 -- the area in which it is valid to spawn armies
 -- min x, min y, max x, max y, region(s) to unshroud
 local vortex_chaos_spawn_areas = {
-	{175, 700, 202, 710,	{"wh2_main_vor_ironfrost_glacier_dagraks_end"}},
-	{527, 691, 548, 715,	{"wh2_main_vor_aghol_wastelands_fortress_of_the_damned", "wh2_main_vor_aghol_wastelands_palace_of_princes"}},
-	{518, 546, 550, 563,	{"wh2_main_vor_avelorn_evershale", "wh2_main_vor_avelorn_tor_saroir"}},
-	{55, 574, 92, 590,		{"wh2_main_vor_plain_of_spiders_clarak_spire", "wh2_main_vor_plain_of_spiders_pits_of_zardok"}},
-	{247, 90, 276, 124,		{"wh2_main_vor_the_lost_valleys_oyxl", "wh2_main_vor_culchan_plains_chupayotl", "wh2_main_vor_culchan_plains_the_southern_sentinels"}},
-	{154, 258, 172, 274,	{"wh2_main_vor_the_creeping_jungle_tlaxtlan"}},
-	{567, 214, 595, 229,	{"wh2_main_vor_shifting_sands_antoch", "wh2_main_vor_shifting_sands_plain_of_tuskers"}},
-	{562, 137, 584, 152,	{"wh2_main_vor_the_red_rivers_cuexotl"}},
-	{239, 543, 261, 566,	{"wh2_main_vor_shadow_wood_venom_glade", "wh2_main_vor_the_black_coast_vauls_anvil"}},
-	{76, 701, 112, 715,		{"wh2_main_vor_ironfrost_glacier_ironfrost"}},
-	{183, 623, 201, 636,	{"wh2_main_vor_naggarond_naggarond"}},
-	{106, 368, 137, 384,	{"wh2_main_vor_isthmus_of_lustria_hexoatl", "wh2_main_vor_isthmus_of_lustria_monolith_of_fallen_gods"}},
-	{174, 201, 202, 216,	{"wh2_main_vor_northern_great_jungle_chaqua", "wh2_main_vor_northern_great_jungle_itza", "wh2_main_vor_northern_great_jungle_quetza"}},
-	{55, 212, 85, 237,		{"wh2_main_vor_jungles_of_green_mist_pillars_of_unseen_constellations", "wh2_main_vor_jungles_of_green_mist_wellsprings_of_eternity"}},
-	{43, 497, 59, 520,		{"wh2_main_vor_ashen_coast_scarpels_lair"}},
-	{623, 523, 638, 545,	{"wh2_main_vor_northern_yvresse_tor_yvresse"}},
-	{412, 512, 424, 527,	{"wh2_main_vor_tiranoc_whitepeak"}},
-	{406, 263, 443, 281,	{"wh2_main_vor_land_of_assassins_palace_of_the_wizard_caliph"}},
-	{523, 271, 564, 288,	{"wh2_main_vor_land_of_the_dervishes_el-kalabad", "wh2_main_vor_land_of_the_dervishes_sudenburg", "wh2_main_vor_the_great_desert_bel_aliad", "wh2_main_vor_the_great_desert_pools_of_despair"}}
-};
-
-local vortex_norsca_spawn_areas = {
-	{334, 298, 366, 319,	{"wh2_main_vor_sea_the_great_ocean"}},
-	{409, 627, 452, 651,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}},
-	{623, 375, 663, 397,	{"wh2_main_vor_sea_eastern_straits_of_the_great_ocean"}},
-	{376, 43, 417, 68,		{"wh2_main_vor_sea_the_churning_gulf"}},
-	{24, 20, 72, 35,		{"wh2_main_vor_sea_western_gulf_of_lustria"}},
-	{19, 401, 50, 422,		{"wh2_main_vor_sea_far_sea"}},
-	{13, 594, 24, 617,		{"wh2_main_vor_sea_boiling_sea"}},
-	{349, 626, 369, 642,	{"wh2_main_vor_sea_sea_of_chill"}},
-	{656, 47, 673, 70,		{"wh2_main_vor_sea_the_sea_of_dread"}}
+	-- Spawn locations in the sea of serpents, close to Hexoatl
+	{196, 406, 216, 423,	{"wh2_main_vor_sea_sea_of_serpents"}}, --1
+	{227, 361, 246, 377,	{"wh2_main_vor_sea_sea_of_serpents"}}, --2
+	{240, 412, 261, 430,	{"wh2_main_vor_sea_sea_of_serpents"}}, --3
+	-- Spawn locations in the great ocean
+	{330, 474, 350, 492,	{"wh2_main_vor_sea_the_great_ocean"}}, --1
+	{304, 437, 327, 455,	{"wh2_main_vor_sea_the_great_ocean"}}, --2
+	{285, 402, 306, 421,	{"wh2_main_vor_sea_the_great_ocean"}}, --3
+	{277, 367, 299, 386,	{"wh2_main_vor_sea_the_great_ocean"}}, --4
+	{305, 344, 329, 362,	{"wh2_main_vor_sea_the_great_ocean"}}, --5
+	{331, 314, 356, 333,	{"wh2_main_vor_sea_the_great_ocean"}}, --6
+	{363, 345, 384, 364,	{"wh2_main_vor_sea_the_great_ocean"}}, --7
+	{372, 382, 394, 401,	{"wh2_main_vor_sea_the_great_ocean"}}, --8
+	{362, 422, 385, 443,	{"wh2_main_vor_sea_the_great_ocean"}}, --9
+	-- Spawn locations in the southern straits of the great ocean
+	{326, 227, 347, 244,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --1
+	{327, 185, 351, 206,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --2
+	{331, 147, 353, 166,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --3
+	{350, 116, 374, 137,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --4 
+	{384, 100, 408, 118,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --5
+	{420, 122, 443, 143,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --6
+	{422, 162, 443, 180,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --7
+	{401, 190, 425, 209,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --8
+	{364, 215, 386, 232,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --9
+	-- Spawn locations in the churning gulf
+	{353, 28, 374, 46,	{"wh2_main_vor_sea_the_churning_gulf"}}, --1
+	{375, 63, 396, 83,	{"wh2_main_vor_sea_the_churning_gulf"}}, --2
+	{445, 52, 468, 70,	{"wh2_main_vor_sea_the_churning_gulf"}}, --3
+	{450, 89, 472, 106,	{"wh2_main_vor_sea_the_churning_gulf"}}, --4
+	-- Spawn locations in the northern straights of the great ocean
+	{396, 620, 413, 635,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}},
+	{384, 661, 404, 677,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}},
+	{424, 648, 443, 663,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}}
 };
 
 -- display position of the vortex
@@ -799,9 +801,7 @@ function vortex_spawn_incursions(incursion_id, coordinates, army_settings, targe
 			units = ram:generate_force("chaos_" .. stage, {army_settings.army_size[1], army_settings.army_size[2]});
 		elseif incursion_id == 2 then
 			incursion_faction_name = "wh2_main_nor_hung_incursion_" .. culture;
-			
-			coordinates = vortex_get_closest_positions(vortex_norsca_spawn_areas, x, y);
-			
+
 			units = ram:generate_force("norsca_" .. stage, {army_settings.army_size[1], army_settings.army_size[2]});
 		else
 			incursion_faction_name = "wh2_main_skv_unknown_clan_" .. culture;
