@@ -14,42 +14,58 @@ require("wh2_vortex_ritual_interventions");
 -- set this to false to disable ai handicap (gives free ritual currency if player is ahead)
 local use_ai_handicap = true;
 
+-- Interactive map here https://imrz.github.io/tww-interactive-map/latest/#/map/vortex/strategic?layer=None&overlays=Settlements,Map%20labels
+-- Co-ordinate map here https://tw-modding.com/vandy/wh2-campaign-map-coordinates-by-marthenil/
+
 -- the area in which it is valid to spawn armies
 -- min x, min y, max x, max y, region(s) to unshroud
 local vortex_chaos_spawn_areas = {
 	-- Spawn locations in the sea of serpents, close to Hexoatl
-	{196, 406, 216, 423,	{"wh2_main_vor_sea_sea_of_serpents"}}, --1
-	{227, 361, 246, 377,	{"wh2_main_vor_sea_sea_of_serpents"}}, --2
-	{240, 412, 261, 430,	{"wh2_main_vor_sea_sea_of_serpents"}}, --3
+	{198, 362, 225, 386,	{"wh2_main_vor_sea_sea_of_serpents"}}, --1
+	{214, 406, 243, 431,	{"wh2_main_vor_sea_sea_of_serpents"}}, --2
+	{246, 375, 276, 400,	{"wh2_main_vor_sea_sea_of_serpents"}}, --3
+	{266, 410, 297, 435,	{"wh2_main_vor_sea_sea_of_serpents"}}, --4
+	-- Spawn locations in the bleak coast
+	{273, 452, 303, 476,	{"wh2_main_vor_sea_the_bleak_coast"}}, --1
+	{305, 495, 334, 518,	{"wh2_main_vor_sea_the_bleak_coast"}}, --2
 	-- Spawn locations in the great ocean
-	{330, 474, 350, 492,	{"wh2_main_vor_sea_the_great_ocean"}}, --1
-	{304, 437, 327, 455,	{"wh2_main_vor_sea_the_great_ocean"}}, --2
-	{285, 402, 306, 421,	{"wh2_main_vor_sea_the_great_ocean"}}, --3
-	{277, 367, 299, 386,	{"wh2_main_vor_sea_the_great_ocean"}}, --4
-	{305, 344, 329, 362,	{"wh2_main_vor_sea_the_great_ocean"}}, --5
-	{331, 314, 356, 333,	{"wh2_main_vor_sea_the_great_ocean"}}, --6
-	{363, 345, 384, 364,	{"wh2_main_vor_sea_the_great_ocean"}}, --7
-	{372, 382, 394, 401,	{"wh2_main_vor_sea_the_great_ocean"}}, --8
-	{362, 422, 385, 443,	{"wh2_main_vor_sea_the_great_ocean"}}, --9
+	{342, 474, 374, 497,	{"wh2_main_vor_sea_the_great_ocean"}}, --1
+	{323, 435, 354, 457,	{"wh2_main_vor_sea_the_great_ocean"}}, --2
+	{375, 438, 405, 460,	{"wh2_main_vor_sea_the_great_ocean"}}, --3
+	{380, 399, 409, 420,	{"wh2_main_vor_sea_the_great_ocean"}}, --4
+	{374, 354, 413, 376,	{"wh2_main_vor_sea_the_great_ocean"}}, --5
+	{331, 344, 359, 364,	{"wh2_main_vor_sea_the_great_ocean"}}, --6
+	{347, 314, 375, 332,	{"wh2_main_vor_sea_the_great_ocean"}}, --7
 	-- Spawn locations in the southern straits of the great ocean
-	{326, 227, 347, 244,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --1
-	{327, 185, 351, 206,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --2
-	{331, 147, 353, 166,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --3
-	{350, 116, 374, 137,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --4 
-	{384, 100, 408, 118,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --5
-	{420, 122, 443, 143,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --6
-	{422, 162, 443, 180,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --7
-	{401, 190, 425, 209,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --8
-	{364, 215, 386, 232,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --9
+	{337, 254, 366, 273,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --1
+	{373, 222, 402, 242,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --2
+	{416, 194, 445, 214,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --3
+	{445, 156, 473, 177,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --4 
+	{448, 123, 477, 142,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --5
+	{403, 104, 432, 122,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --6
+	{366, 127, 399, 146,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --7
+	{346, 164, 377, 183,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --8
+	{340, 201, 360, 228,	{"wh2_main_vor_sea_southern_straits_of_the_great_ocean"}}, --9
 	-- Spawn locations in the churning gulf
-	{353, 28, 374, 46,	{"wh2_main_vor_sea_the_churning_gulf"}}, --1
-	{375, 63, 396, 83,	{"wh2_main_vor_sea_the_churning_gulf"}}, --2
-	{445, 52, 468, 70,	{"wh2_main_vor_sea_the_churning_gulf"}}, --3
-	{450, 89, 472, 106,	{"wh2_main_vor_sea_the_churning_gulf"}}, --4
+	{464, 86, 492, 101,	{"wh2_main_vor_sea_the_churning_gulf"}}, --1
+	{423, 68, 452, 87,	{"wh2_main_vor_sea_the_churning_gulf"}}, --2
+	{385, 51, 413, 71,	{"wh2_main_vor_sea_the_churning_gulf"}}, --3
+	{462, 39, 472, 59,	{"wh2_main_vor_sea_the_churning_gulf"}}, --4
+	-- Spawn locations in the mangrove coast
+	{314, 133, 338, 150,	{"wh2_main_vor_sea_mangrove_coast"}}, --1
+	{344, 82, 368, 99,	{"wh2_main_vor_sea_mangrove_coast"}}, --2
 	-- Spawn locations in the northern straights of the great ocean
-	{396, 620, 413, 635,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}},
-	{384, 661, 404, 677,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}},
-	{424, 648, 443, 663,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}}
+	{401, 626, 427, 645,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}}, --1
+	{440, 634, 466, 651,	{"wh2_main_vor_sea_northern_straits_of_the_great_ocean"}}, --2
+	-- Spawn locations in the shifting isles
+	{691, 463, 719, 483,	{"wh2_main_vor_sea_shifting_isles"}}, --1
+	{705, 505, 720, 535,	{"wh2_main_vor_sea_shifting_isles"}}, --2
+	-- Spawn locations in the gulf of sufaga
+	{681, 345, 708, 365,	{"wh2_main_vor_sea_gulf_of_sufaga"}}, --1
+	-- Spawn locations in the eastern straights of the great ocean
+	{506, 384, 535, 403,	{"wh2_main_vor_sea_eastern_straits_of_the_great_ocean"}}, --1
+	{556, 379, 587, 399,	{"wh2_main_vor_sea_eastern_straits_of_the_great_ocean"}}, --2
+	{614, 377, 641, 395,	{"wh2_main_vor_sea_eastern_straits_of_the_great_ocean"}} --3
 };
 
 -- display position of the vortex
@@ -66,8 +82,17 @@ function vortex_setup()
 	
 	cm:complete_scripted_mission_objective("wh2_main_vor_domination_victory", "domination", true);
 	
-	if cm:is_new_game() and cm:get_local_faction(true) then
-		vortex_start_interventions();
+	local local_faction = cm:get_local_faction(true);
+	
+	if local_faction then
+		if cm:is_new_game() then
+			vortex_start_interventions();
+		end;
+		
+		-- disable vortex ritual event feed events if the player does not have ritual currency (e.g. nakai)
+		if not cm:is_multiplayer() and not cm:get_faction(local_faction):has_pooled_resource("wh2_main_ritual_currency") and local_faction ~= "wh2_main_def_hag_graef" then
+			cm:disable_event_feed_events(true, "", "wh_event_subcategory_faction_rituals", "");
+		end;
 	end;
 	
 	if cm:get_saved_value("player_lost_campaign") then
@@ -418,7 +443,7 @@ function vortex_setup()
 					
 					if attacker then
 						-- all units that participated in the final battle become rank 9
-						cm:award_experience_level(cm:char_lookup_str(attacker), 9);
+						cm:add_experience_to_units_commanded_by_character(cm:char_lookup_str(attacker), 9);
 					end;
 					
 					-- award xp to all player characters
@@ -439,7 +464,7 @@ function vortex_setup()
 						dilemma = dilemma .. "_mpc";
 					end;
 					
-					cm:trigger_dilemma(faction_name, dilemma, true);
+					cm:trigger_dilemma(faction_name, dilemma);
 					
 					core:add_listener(
 						"continue_after_victory_dilemma",
@@ -542,7 +567,7 @@ function vortex_setup()
 				for i = 1, #ai_cultures do
 					local current_ai_culture = ai_cultures[i];
 					
-					if player_culture_prefix ~= current_ai_culture then
+					if player_culture_prefix ~= current_ai_culture and faction:culture():find("wh2_main_") then
 						cm:cancel_custom_mission(faction_name, "wh2_main_qb_final_battle_" .. player_culture_prefix .. "_ai_" .. current_ai_culture);
 					end;
 				end;
@@ -649,12 +674,26 @@ function vortex_trigger_final_battle(faction, should_cancel)
 				mission = mission .. "_morathi";
 			elseif target_faction == "wh2_main_skv_clan_pestilens" then
 				mission = mission .. "_lord_skrolk";
+			elseif target_faction == "wh2_dlc09_skv_clan_rictus" then
+				mission = mission .. "_tretch";	
 			elseif target_faction == "wh2_main_def_har_ganeth" then
 				mission = mission .. "_hellebron";
 			elseif target_faction == "wh2_main_hef_avelorn" then
 				mission = mission .. "_alarielle";
 			elseif target_faction == "wh2_main_hef_nagarythe" then
 				mission = mission .. "_alith_anar";
+			elseif target_faction == "wh2_dlc11_def_the_blessed_dread" then
+				mission = mission .. "_lokhir";	
+			elseif target_faction == "wh2_main_skv_clan_skyre" then
+				mission = mission .. "_ikit_claw";	
+			elseif target_faction == "wh2_dlc12_lzd_cult_of_sotek" then
+				mission = mission .. "_tehenhauin";	
+			elseif target_faction == "wh2_main_lzd_tlaqua" then
+				mission = mission .. "_tiktaqto";	
+			elseif target_faction == "wh2_main_lzd_itza" then
+				mission = mission .. "_gor_rok";
+			elseif target_faction == "wh2_dlc15_hef_imrik" then
+				mission = mission .. "_imrik";
 			end;
 		end;
 	else
@@ -801,7 +840,7 @@ function vortex_spawn_incursions(incursion_id, coordinates, army_settings, targe
 			units = ram:generate_force("chaos_" .. stage, {army_settings.army_size[1], army_settings.army_size[2]});
 		elseif incursion_id == 2 then
 			incursion_faction_name = "wh2_main_nor_hung_incursion_" .. culture;
-
+			
 			units = ram:generate_force("norsca_" .. stage, {army_settings.army_size[1], army_settings.army_size[2]});
 		else
 			incursion_faction_name = "wh2_main_skv_unknown_clan_" .. culture;
@@ -814,7 +853,7 @@ function vortex_spawn_incursions(incursion_id, coordinates, army_settings, targe
 		while not is_valid and count < 50 do
 			chosen_position = {cm:random_number(coordinates[3], coordinates[1]), cm:random_number(coordinates[4], coordinates[2])};
 			
-			if is_valid_spawn_point(chosen_position) then
+			if is_valid_spawn_point(chosen_position[1], chosen_position[2]) then
 				if #global_army_positions > 0 then
 					for j = 1, #global_army_positions do
 						-- check if the chosen position's distance to any of the previous positions
@@ -1749,11 +1788,11 @@ function vortex_setup_active_incusion_death_monitors()
 	
 	for i = 0, faction_list:num_items() - 1 do
 		local current_faction = faction_list:item_at(i);
-		
+
 		if current_faction:has_rituals() then
 			local active_rituals = current_faction:rituals():active_rituals()
 			
-			if active_rituals:num_items() > 0 then
+			if active_rituals:num_items() > 0 and current_faction:culture():find("wh2_main_") then
 				local culture_prefix = vortex_get_culture_prefix(current_faction:culture());
 				
 				local incursion_factions = {
@@ -1761,7 +1800,7 @@ function vortex_setup_active_incusion_death_monitors()
 					"wh2_main_nor_hung_incursion_" .. culture_prefix,
 					"wh2_main_skv_unknown_clan_" .. culture_prefix
 				};
-				
+
 				for j = 1, #incursion_factions do
 					if not cm:get_faction(incursion_factions[j]):is_dead() then
 						vortex_incursion_death_monitor(incursion_factions[j], current_faction:name());
@@ -1840,8 +1879,8 @@ function vortex_lock_ritual_chains()
 	for i = 0, faction_list:num_items() - 1 do
 		local current_faction = faction_list:item_at(i);
 		
-		if current_faction:has_rituals() then
-			cm:set_ritual_chain_unlocked(current_faction:command_queue_index(), "wh2_main_ritual_vortex_" .. vortex_get_culture_prefix(current_faction:culture()), false);
+		if current_faction:has_rituals() and current_faction:culture():find("wh2_main_") then
+			cm:lock_ritual_chain(current_faction, "wh2_main_ritual_vortex_" .. vortex_get_culture_prefix(current_faction:culture()));
 		end;
 	end;
 end;
